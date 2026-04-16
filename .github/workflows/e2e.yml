@@ -49,7 +49,7 @@ jobs:
         if: steps.playwright-cache.outputs.cache-hit == 'true'
         run: npx playwright install-deps chromium
 
-      - name: Run all 30 E2E tests against manuelaklenke.com
+      - name: Run all 35 E2E tests against manuelaklenke.com
         run: npx playwright test --project=chromium
 
       - name: Write test results summary

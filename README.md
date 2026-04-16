@@ -40,14 +40,14 @@ tests/
 | File | Tests | What is covered |
 |---|---|---|
 | navigation.spec.ts | 7 | Navbar, footer, all page links, 404 |
-| accessibility.spec.ts | 10 | Skip-to-content link, image alt text on all pages |
+| accessibility.spec.ts | 15 | Skip-to-content link, image alt text, single h1 on all pages |
 | language.spec.ts | 4 | Language switcher visibility and switching |
 | contact.spec.ts | 4 | Form fields, validation, submit behaviour |
 | home.spec.ts | 2 | Page load, main content area |
 | about.spec.ts | 1 | Page load |
 | portfolio.spec.ts | 1 | Page load |
 | events.spec.ts | 1 | Page load |
-| **Total** | **30** | |
+| **Total** | **35** | |
 
 ---
 
@@ -115,5 +115,4 @@ Tests can also be triggered manually from **Actions → E2E Tests → Run workfl
 
 The following issues exist in the app and are documented in the tests:
 
-- `/about`, `/portfolio`, `/contact` — missing `<h1>` element (accessibility)
 - `ipapi.co` CORS errors on all pages — caused by IP-based language detection on a free-tier API
