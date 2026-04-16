@@ -7,6 +7,9 @@ on:
   schedule:
     - cron: '0 7 * * *'
 
+permissions:
+  contents: write
+
 jobs:
   test:
     name: Playwright E2E
