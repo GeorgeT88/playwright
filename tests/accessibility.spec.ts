@@ -11,6 +11,13 @@ test.describe('Accessibility', () => {
       await expect(skipLink).toBeAttached();
     });
 
+    // Confirms the page has exactly one <h1> element (accessibility and SEO best practice)
+    test(`page has exactly one h1 on ${path}`, async ({ page }) => {
+      await page.goto(path);
+      const h1Count = await page.locator('h1').count();
+      expect(h1Count).toBe(1);
+    });
+
     // Confirms every <img> element on the page has an alt attribute (required for screen readers)
     test(`all images have alt text on ${path}`, async ({ page }) => {
       await page.goto(path);
