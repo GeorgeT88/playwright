@@ -34,8 +34,20 @@ jobs:
       - name: Install npm dependencies
         run: npm ci
 
+      - name: Cache Playwright Chromium browser
+        uses: actions/cache@v4
+        id: playwright-cache
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ hashFiles('package-lock.json') }}
+
       - name: Download Chromium browser for Playwright
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
+
+      - name: Install Chromium system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Run all 30 E2E tests against manuelaklenke.com
         run: npx playwright test --project=chromium
