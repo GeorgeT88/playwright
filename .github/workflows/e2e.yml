@@ -1,4 +1,9 @@
 name: E2E Tests
+run-name: >-
+  ${{ github.event_name == 'workflow_dispatch' && 'E2E Tests — manual run' ||
+      github.event_name == 'repository_dispatch' && 'E2E Tests — triggered by Vercel deploy' ||
+      github.event_name == 'schedule' && 'E2E Tests — nightly run' ||
+      'E2E Tests' }}
 
 on:
   repository_dispatch:
