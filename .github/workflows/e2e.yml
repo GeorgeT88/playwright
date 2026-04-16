@@ -40,6 +40,17 @@ jobs:
       - name: Run all 30 E2E tests against manuelaklenke.com
         run: npx playwright test --project=chromium
 
+      - name: Write test results summary
+        if: always()
+        run: |
+          echo "## Playwright E2E Results" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Target:** https://manuelaklenke.com" >> $GITHUB_STEP_SUMMARY
+          echo "**Browser:** Chromium" >> $GITHUB_STEP_SUMMARY
+          echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "📊 [View full HTML report](https://georget88.github.io/playwright/)" >> $GITHUB_STEP_SUMMARY
+
       - name: Publish HTML test report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         if: always()
