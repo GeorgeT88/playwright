@@ -1,12 +1,12 @@
 # 🎭 Playwright E2E Tests — manuelaklenke.com
 
-End-to-end test suite for [manuelaklenke.com](https://manuelaklenke.com), maintained by the QA team. Tests run automatically after every deployment and results are published to GitHub Pages.
+End-to-end test suite for [manuelaklenke.com](https://manuelaklenke.com). Tests run automatically after every deployment and results are published to GitHub Pages.
 
 ---
 
-## 📊 Test Results
+## 📊 Test Report
 
-Latest report: **[https://georget88.github.io/playwright/](https://georget88.github.io/playwright/)**
+Latest report: **[https://georget88.github.io/manuelaklenke-playwright-e2e/](https://georget88.github.io/manuelaklenke-playwright-e2e/)**
 
 ---
 
@@ -23,13 +23,15 @@ Latest report: **[https://georget88.github.io/playwright/](https://georget88.git
 
 ```
 tests/
+├── global.setup.ts       # Global setup (Zscaler proxy cookie handling)
+├── helpers.ts            # Shared test helpers
 ├── navigation.spec.ts    # Navbar links, footer, 404 page
 ├── home.spec.ts          # Home page load and content
 ├── about.spec.ts         # About page load
 ├── portfolio.spec.ts     # Portfolio page load
 ├── events.spec.ts        # Events page load
 ├── contact.spec.ts       # Contact form fields and validation
-├── accessibility.spec.ts # Skip link and image alt text
+├── accessibility.spec.ts # Skip-to-content link, image alt text, single h1
 └── language.spec.ts      # Language switcher (EN / DE / RO)
 ```
 
@@ -40,7 +42,7 @@ tests/
 | File | Tests | What is covered |
 |---|---|---|
 | navigation.spec.ts | 7 | Navbar, footer, all page links, 404 |
-| accessibility.spec.ts | 15 | Skip-to-content link, image alt text, single h1 on all pages |
+| accessibility.spec.ts | 15 | Skip-to-content link, image alt text, single h1 on all 5 public pages |
 | language.spec.ts | 4 | Language switcher visibility and switching |
 | contact.spec.ts | 4 | Form fields, validation, submit behaviour |
 | home.spec.ts | 2 | Page load, main content area |
@@ -83,21 +85,23 @@ npm run test:report
 
 ## ⚙️ CI/CD Pipeline
 
-Tests are triggered automatically after every push to the `main` branch of [GeorgeT88/my-bmad-project](https://github.com/GeorgeT88/my-bmad-project):
+Tests are triggered automatically by [GeorgeT88/manuelaklenke-web](https://github.com/GeorgeT88/manuelaklenke-web) after every push to `main`, once the Vercel production deployment is confirmed live:
 
 ```
-📦 Push to my-bmad-project
+📦 Push to manuelaklenke-web
         ↓
-🌐 Vercel deploys the app (~2 min)
+🔨 Build passes
         ↓
-⚡ GitHub Actions triggers E2E Tests
+⏳ Vercel deployment confirmed live
         ↓
-🎭 30 tests run against https://manuelaklenke.com
+⚡ repository_dispatch: vercel-deploy
+        ↓
+🎭 35 tests run against https://manuelaklenke.com (Chromium)
         ↓
 📊 HTML report published to GitHub Pages
 ```
 
-Tests can also be triggered manually from **Actions → E2E Tests → Run workflow**.
+Tests can also be triggered manually from **Actions → E2E Tests → Run workflow**, and run on a nightly schedule at **07:00 UTC**.
 
 ---
 

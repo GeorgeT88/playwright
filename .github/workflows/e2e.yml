@@ -61,7 +61,7 @@ jobs:
           echo "**Browser:** Chromium" >> $GITHUB_STEP_SUMMARY
           echo "**Trigger:** ${{ github.event_name }}" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
-          echo "📊 [View full HTML report](https://georget88.github.io/playwright/)" >> $GITHUB_STEP_SUMMARY
+          echo "📊 [View full HTML report](https://georget88.github.io/manuelaklenke-playwright-e2e/)" >> $GITHUB_STEP_SUMMARY
 
       - name: Publish HTML test report to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
