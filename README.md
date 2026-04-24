@@ -99,6 +99,9 @@ Tests are triggered automatically by [GeorgeT88/manuelaklenke-web](https://githu
 🎭 35 tests run against https://manuelaklenke.com (Chromium)
         ↓
 📊 HTML report published to GitHub Pages
+
+(in parallel: 🔬 Selenium E2E, 🌲 Cypress E2E)
+(after all E2E: 🔒 Snyk SCA + 🔎 Semgrep SAST in parallel)
 ```
 
 Tests can also be triggered manually from **Actions → E2E Tests → Run workflow**, and run on a nightly schedule at **07:00 UTC**.
